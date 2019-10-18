@@ -23,6 +23,7 @@ window.addEventListener("load", function() {
    let form = document.querySelector("form");
 
    form.addEventListener("submit", function(event) {
+      event.preventDefault();
       let pilotName = document.querySelector("input[name=pilotName]");
       let copilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
@@ -31,17 +32,17 @@ window.addEventListener("load", function() {
       if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
          alert("All fields are required!");
          // stop the form submission
-         event.preventDefault();
+        
       }
 
       if (isNaN(pilotName.value) === false || isNaN(copilotName.value) === false){
          alert("Please enter a string value");
-         event.preventDefault();
+       
       }
 
       if (isNaN(fuelLevel.value) === true || isNaN(cargoMass.value) === true){
          alert("Please enter a numerical value");
-         event.preventDefault();
+       
       }
 
       if (fuelLevel.value < 10000 || cargoMass.value > 10000) {
@@ -58,10 +59,12 @@ window.addEventListener("load", function() {
          if (cargoMass.value > 10000) {
             document.getElementById("cargoStatus").innerHTML = "There is too much mass for the shuttle to take off"
          }
-         event.preventDefault();
+        
       } else {
          document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch"
          document.getElementById("launchStatus").style.setProperty("color","green")
+         document.getElementById("fuelStatus").innerHTML = "Fuel is okay for launch"
+         document.getElementById("cargoStatus").innerHTML = "Mass is low enough for launch"
       }
    });
 });
